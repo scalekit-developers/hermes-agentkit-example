@@ -2,9 +2,42 @@
 
 Companion to the how-to: [Use AgentKit with Hermes](https://docs.scalekit.com/agentkit/hermes/).
 
-This repo is not a Hermes clone. It shows the install, env names, and one GitHub read that we already ran on a live host.
+Hermes talks. Scalekit holds the tokens. GitHub answers as `usr_8f3a2c`. This repo is not a Hermes clone.
 
-Hermes is the host. Scalekit stores the tokens. The host skill is `hermes-delegated-auth`.
+```text
+you
+  hermes chat
+    /hermes-delegated-auth
+      tool_exec.py
+        Scalekit vault
+          github-connect
+            github_user_get_authenticated
+```
+
+```mermaid
+sequenceDiagram
+    participant You
+    participant Hermes
+    participant Skill as hermes-delegated-auth
+    participant Scalekit
+    participant GitHub
+    You->>Hermes: /hermes-delegated-auth who am I on GitHub?
+    Hermes->>Skill: load host skill
+    Skill->>Scalekit: execute github_user_get_authenticated
+    Note over Scalekit: tokens for usr_8f3a2c stay here
+    Scalekit->>GitHub: GET /user
+    GitHub-->>Scalekit: login
+    Scalekit-->>Hermes: result
+    Hermes-->>You: GitHub login
+```
+
+```text
+this repo/                 # install + env + one proven read
+~/.hermes/skills/
+  hermes-delegated-auth/   # host skill (not this repo)
+Scalekit                   # token vault
+github-connect             # dashboard connection name
+```
 
 ## Install the host skill
 
