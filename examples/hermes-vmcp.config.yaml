@@ -1,0 +1,7 @@
+# Merge this entry into ~/.hermes/config.yaml, or point Hermes at this file.
+# Do not set auth: oauth. Virtual MCP uses a minted bearer.
+mcp_servers:
+  scalekit:
+    url: ${SCALEKIT_MCP_SERVER_URL}
+    headers:
+      Authorization: Bearer ${SCALEKIT_MCP_SESSION_TOKEN}
