@@ -104,6 +104,28 @@ In Hermes chat:
 /hermes-delegated-auth who am I on GitHub?
 ```
 
+## Optional: Virtual MCP on this Hermes host
+
+Draft. Not live-verified yet.
+
+Use this when you want a scoped tool list on a gateway you operate.
+One host. One bearer. You remint.
+
+1. Create the Virtual MCP config once. Save `mcp_server_url`.
+2. Run `scripts/mint-session-token.py`.
+3. Put the token in `SCALEKIT_MCP_SESSION_TOKEN`.
+4. Point Hermes at `examples/hermes-vmcp.config.yaml`.
+5. Restart, or `/reload-mcp`.
+6. Before expiry: mint again, write the env var, `/reload-mcp`.
+
+The mint script reads `SCALEKIT_*` from the environment or `~/.hermes/.env`. It also needs `SCALEKIT_MCP_CONFIG_ID`. Put the saved URL in `SCALEKIT_MCP_SERVER_URL`.
+
+```bash
+uv run --with scalekit-sdk-python scripts/mint-session-token.py
+```
+
+Do not run `hermes mcp login`. Do not set `auth: oauth`.
+
 ## What this example does not cover
 
 - Gmail. This environment has no Gmail connection. Do not treat unread mail as proven here.
