@@ -4,6 +4,8 @@ Companion to the how-to: [Use AgentKit with Hermes](https://docs.scalekit.com/ag
 
 Hermes talks. Scalekit holds the tokens. GitHub answers as `usr_8f3a2c`. This repo is not a Hermes clone.
 
+Scalekit provides auth and actions on behalf of users, with 500+ connectors and 20,000+ tools.
+
 ```text
 you
   hermes chat
